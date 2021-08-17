@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md my-5">
+        <table class="table table-striped">
+             <thead>
+    <tr>
+
+      <th scope="col">City</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+{% for object in page_obj %}
+        <tr>
+            <td><a href="{% url 'detail'  pk=object.id %}">{{ object.name }}</a></td>
+            <td><a
+                    href="{% url 'update'  pk=object.id %}"><button type="submit" class="btn btn-primary">Edit
+            </button></a></td>
+            <td><a
+                    href="{% url 'delete'  pk=object.id %}"><button type="submit" class="btn btn-danger">Delete
+            </button></a></td></td>
+        </tr>
+    {% endfor %}
+            </table>
+    </div></div>
+<div class="row">
+    <div class="col-md-3">
+        <form action="" method="post" style="display: block">{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary">Add</button>
+</form>
+    </div>
+</div>
+{% endblock %}
